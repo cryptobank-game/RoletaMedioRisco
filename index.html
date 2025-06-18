@@ -65,6 +65,27 @@
             opacity: 0.6;
             z-index: 1;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-image a {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: transparent;
+            font-size: 0;
+        }
+
+        .floating-image:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            z-index: 2;
         }
 
         @keyframes floatDown {
@@ -245,113 +266,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // PERSONALIZE AQUI OS LINKS DAS IMAGENS QUE APARECERÃO NOS CÍRCULOS FLUTUANTES
-            // Adicione quantos links de imagem quiser
-            const cryptoImages = [
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                 'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                 'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                 'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
-                'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
-                'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
-                'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
-                'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
-                // Adicione mais links de imagens aqui se desejar
+            // PERSONALIZE AQUI OS LINKS DAS IMAGENS E SEUS LINKS ASSOCIADOS
+            const cryptoData = [
+                {
+                    image: 'https://images.vexels.com/media/users/3/266057/isolated/preview/658492f2c5ab9c1cf7dd6902eaf54932-icone-de-dinheiro-de-moeda-de-sinal-bitcoin.png',
+                    link: 'https://bitcoin.org/'
+                },
+                {
+                    image: 'https://www.citypng.com/public/uploads/preview/hd-dogecoin-crypto-coin-png-701751695051848gsrsqxblqc.png',
+                    link: 'https://dogecoin.com/'
+                },
+                {
+                    image: 'https://png.pngtree.com/png-clipart/20230817/original/pngtree-solana-sol-cryptocurrency-symbol-depicted-on-a-plain-white-backdrop-vector-picture-image_10957910.png',
+                    link: 'https://solana.com/'
+                },
+                {
+                    image: 'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
+                    link: 'https://cardano.org/'
+                },
+                {
+                    image: 'https://static-00.iconduck.com/assets.00/xrp-cryptocurrency-icon-2048x2048-2a0bicgj.png',
+                    link: 'https://ripple.com/xrp/'
+                },
+                // Adicione mais objetos com imagens e links conforme necessário
             ];
 
-            // Função para criar 100 círculos flutuantes
+            // Função para criar 100 círculos flutuantes com links
             function createFloatingImages() {
                 const container = document.body;
                 
@@ -360,22 +300,29 @@
                     const left = Math.floor(Math.random() * 90) + 5; // Posição horizontal 5-95%
                     const delay = Math.random() * 30; // Atraso inicial aleatório
                     const duration = 10 + Math.random() * 20; // Duração entre 10-30s
-                    const imageIndex = i % cryptoImages.length; // Seleciona imagem do array
+                    const dataIndex = i % cryptoData.length; // Seleciona dados do array
                     
-                    const img = document.createElement('div');
-                    img.className = 'floating-image';
-                    img.style.backgroundImage = `url('${cryptoImages[imageIndex]}')`;
-                    img.style.width = `${size}px`;
-                    img.style.height = `${size}px`;
-                    img.style.left = `${left}%`;
-                    img.style.animationDelay = `${delay}s`;
-                    img.style.animationDuration = `${duration}s`;
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'floating-image';
+                    imgContainer.style.backgroundImage = `url('${cryptoData[dataIndex].image}')`;
+                    imgContainer.style.width = `${size}px`;
+                    imgContainer.style.height = `${size}px`;
+                    imgContainer.style.left = `${left}%`;
+                    imgContainer.style.animationDelay = `${delay}s`;
+                    imgContainer.style.animationDuration = `${duration}s`;
                     
-                    container.insertBefore(img, container.firstChild);
+                    // Cria o link dentro do círculo
+                    const link = document.createElement('a');
+                    link.href = cryptoData[dataIndex].link;
+                    link.target = '_blank';
+                    link.title = 'Visitar site da criptomoeda';
+                    
+                    imgContainer.appendChild(link);
+                    container.insertBefore(imgContainer, container.firstChild);
                 }
             }
 
-            // Chamada para criar as 100 imagens flutuantes
+            // Chamada para criar as 100 imagens flutuantes com links
             createFloatingImages();
 
             const resultados = document.querySelectorAll('.resultado');
